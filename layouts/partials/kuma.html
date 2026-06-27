@@ -1,0 +1,116 @@
+<div class="container kuma">
+    <header>
+        <nav>
+            <a href="#kuma-about">ABOUT</a>
+            <a href="#kuma-exhibition">EXHIBITION</a>
+            <a href="#kuma-resource">RESOURCE</a>
+            <a href="#kuma-news">NEWS</a>
+            <button href="#" class="">EN</button>
+        </nav>
+        <div>
+            <a href="/" class="title">KUMA</a>
+        </div>
+    </header>
+
+    <section>
+        <div class="about-container" id="kuma-about">
+            <div>
+                <img src="/assets/kuma01.jpg" />
+            </div>
+            <br />
+            <div>About</div>
+            <br />
+            <div>
+                KUMA는 계원예술대학교의 부설 미술관으로, 예술과 디자인 교육의
+                실천적 현장이자 창의적 실험이 이루어지는 문화 플랫폼입니다. 본
+                미술관은 전시, 교육, 아카이브, 지역사회 연계 프로그램을 통해
+                동시대 시각문화에 대한 비판적 담론을 형성하고, 학생·연구자·현장
+                전문가 간의 교류를 촉진합니다. 또한 산업체와의 협업 전시, 학제
+                간 융합 프로젝트를 통해 미래 예술교육의 새로운 방향을 제시하고
+                있습니다. KUMA는 대학 내·외부의 다양한 구성원이 참여하는 열린
+                예술 생태계를 지향하며,예술이 일상과 사회를 연결하는 다리 역할을
+                수행합니다.
+            </div>
+        </div>
+        <div class="exhibition-container" id="kuma-exhibition">
+            <div>Exhibition</div>
+
+            <div class="exhibition-list">
+                {{ range (where site.RegularPages "Section" "exhibitions") }}
+                <details class="exhibition-item">
+                    <summary>
+                        {{ .Params.type }} {{ .Title }}
+                        <span
+                            >{{ time.Format "2006.01.02" .Params.startDate }} –
+                            {{ time.Format "01.02" .Params.endDate }}</span
+                        >
+                    </summary>
+
+                    <div class="content">
+                        {{ .Params.description | markdownify }} {{ with
+                        .Params.images }}
+                        <div class="gallery">
+                            {{ range . }}
+                            <img src="{{ . | relURL }}" alt="" />
+                            {{ end }}
+                        </div>
+                        {{ end }}
+                    </div>
+                </details>
+                {{ end }}
+            </div>
+        </div>
+        <div class="resource-container" id="kuma-resource">
+            <div>Resource</div>
+        </div>
+        <div class="news-container" id="kuma-news">
+            <div>News</div>
+
+            <table class="news-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ range where site.RegularPages "Section" "news" }}
+                    <tr>
+                        <td>{{ .Params.type }}</td>
+                        <td>
+                            <a
+                                href="{{ .Params.link }}"
+                                onclick="
+                                    let w = window.innerWidth * 0.5;
+                                    let h = window.innerHeight * 0.8;
+                                    window.open(
+                                        this.href,
+                                        'pdfwindow',
+                                        `width=${w},height=${h}`,
+                                    );
+                                    return false;
+                                "
+                            >
+                                {{ .Params.item }}
+                            </a>
+                        </td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+        </div>
+        <div class="contact-container">
+            <div>↳ Contact</div>
+            <div>
+                <p>대한민국 경기도 의왕시 계원대학로 66</p>
+                <p><a href="mailto:kuma@kaywon.ac.kr">kuma@kaywon.ac.kr</a></p>
+                <br />
+                <img class="full" src="/assets/kuma02.jpg" />
+            </div>
+        </div>
+
+        <!-- <img class="full" src="img/exkuma03.jpg"> -->
+
+        <!--<div>{{ .Content }}</div>-->
+    </section>
+</div>

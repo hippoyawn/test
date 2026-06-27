@@ -1,0 +1,293 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "Pretendard-Regular";
+    src: url("../fonts/Pretendard-Regular.woff2") format("woff2");
+    font-display: swap;
+    font-weight: 300;
+}
+
+:root {
+    --header-offset: 74px;
+
+    --font-base: clamp(14px, 1.5vw, 17px);
+    --font-small: 9.5pt;
+    --font-subsection: 11pt;
+
+    --line-base: 1.5;
+    --line-tight: 1.2;
+
+    --content-padding: 10px;
+    --section-padding-y: 34px;
+    --section-gap: 18px;
+
+    --cell-min-height: 34px;
+    --cell-padding: 0 8px 5px;
+
+    --line-color: black;
+    --point-color: Brown;
+
+    --exkuma-bg: #f1f3c9;
+    --exkuma-text: #441845;
+
+    --table-col-1: 118px;
+    --table-col-2: minmax(0, 1fr);
+    --table-col-3: minmax(0, 1fr);
+}
+
+#kuma-about,
+#kuma-exhibition,
+#kuma-resource,
+#kuma-news,
+#kuma-contact {
+    scroll-margin-top: var(--header-offset);
+}
+
+::-moz-selection {
+    background: black;
+    color: white;
+}
+
+::selection {
+    background: black;
+    color: white;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: "Pretendard-Regular", sans-serif;
+    font-size: var(--font-base);
+    line-height: var(--line-base);
+    word-break: keep-all;
+    color: black;
+    background: white;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+p,
+li,
+td,
+a,
+th,
+td,
+table,
+tr,
+thead,
+button {
+    font-size: var(--font-base);
+    line-height: var(--line-base);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    width: 100%;
+    display: block;
+    margin: 0;
+}
+
+.left,
+.right {
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    overflow-anchor: none;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+.left::-webkit-scrollbar,
+.right::-webkit-scrollbar {
+    display: none;
+}
+
+main {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100%;
+    scrollbar-width: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.container.ex-kuma {
+    background-color: var(--exkuma-bg);
+    color: var(--exkuma-text);
+    height: auto;
+}
+
+.container header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+    width: 100%;
+}
+
+.container header nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.container.ex-kuma header nav {
+    display: flex;
+    align-items: end;
+}
+
+.container.ex-kuma a,
+.container.ex-kuma p,
+.container.ex-kuma h1,
+.container.ex-kuma h2 {
+    color: inherit;
+}
+
+nav a,
+nav a:visited,
+nav a:focus,
+nav a:active {
+    color: inherit;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: var(--font-base);
+    line-height: 1.1;
+    outline: none;
+}
+
+.container header .title {
+    font-weight: 600;
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.333rem);
+    line-height: 1;
+}
+
+section {
+    padding: var(--content-padding);
+}
+
+section > [class$="-container"] {
+    border-bottom: 1px solid var(--line-color);
+    padding-top: var(--section-padding-y);
+    padding-bottom: var(--section-padding-y);
+}
+
+section > [class$="-container"]:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.container.kuma button {
+    border: none;
+    width: fit-content;
+    background-color: white;
+    cursor: pointer;
+}
+
+.container.kuma button:hover {
+    color: var(--point-color);
+}
+
+.container.ex-kuma section > [class$="-container"] {
+    border-bottom: 1px solid var(--exkuma-text);
+}
+
+.container.ex-kuma a,
+.container.ex-kuma button {
+    color: var(--exkuma-text);
+}
+
+.container.ex-kuma button {
+    background-color: var(--exkuma-bg);
+    color: var(--exkuma-text);
+    border: none;
+    width: fit-content;
+}
+
+.news-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.news-table thead th {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #000;
+}
+
+.news-table tbody td {
+    padding: 16px 12px;
+    vertical-align: top;
+    border-bottom: 1px solid #000;
+}
+
+.news-table tbody td:first-child {
+    width: 90px;
+    white-space: nowrap;
+    border-right: 1px solid #000;
+}
+
+.logos-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.logos-container .logo {
+    width: auto;
+    height: clamp(20px, 8vw, 60px);
+}
+
+.news-table tbody td:last-child {
+}
+
+@media screen and (max-width: 1280px) {
+}
+
+@media screen and (max-width: 1280px) {
+}
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 580px) {
+}
