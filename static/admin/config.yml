@@ -1,12 +1,12 @@
 backend:
   name: github
-  repo: booklice/booklice # 실제 없어도 됨(더미여도 됨)
+  repo: booklice/booklice
   branch: main
 
 # backend:
 #   name: test-repo
 
-app_title: KUMA
+app_title: KUMA TEST
 
 logo:
   src: ../assets/logo.png
@@ -33,6 +33,50 @@ media_libraries:
           optimize: true
 
 collections:
+  - name: pages
+    label: Pages
+    i18n: true
+    files:
+      - name: kuma-about
+        label: KUMA About
+        i18n: true
+        file: content/kuma-about/index.md
+        fields:
+          - label: 사진
+            name: image
+            widget: image
+            i18n: duplicate
+            required: true
+
+          - label: 소개
+            name: description
+            widget: markdown
+            i18n: true
+            required: true
+
+          - label: 대표 소장품
+            name: collections
+            widget: list
+            summary: "{{fields.artist}} · {{fields.title}}"
+            i18n: duplicate
+            fields:
+              - { label: 사진, name: image, widget: image }
+              - { label: 분류, name: category, widget: string }
+              - { label: 작가, name: artist, widget: string }
+              - { label: 작품명, name: title, widget: string }
+              - { label: 규격, name: size, widget: string }
+              - { label: 제작연도, name: year, widget: number }
+
+          - label: 운영위원회
+            name: committee
+            widget: list
+            summary: "{{fields.role}} · {{fields.name}}"
+            i18n: duplicate
+            fields:
+              - { label: 직책, name: role, widget: string }
+              - { label: 이름, name: name, widget: string }
+              - { label: 소속, name: affiliation, widget: string }
+
   - name: exhibition
     label: KUMA Exhibitions
     folder: /content/exhibitions
@@ -69,7 +113,7 @@ collections:
 
       - name: description
         label: 설명
-        widget: richtext
+        widget: markdown
         i18n: true
         required: true
 
@@ -92,7 +136,7 @@ collections:
         widget: string
         hint: PDF 등
 
-      - name: item
+      - name: title
         label: 제목
         widget: string
         hint: 대관신청서 등
@@ -114,7 +158,7 @@ collections:
         widget: string
         hint: 보도자료 등
 
-      - name: item
+      - name: title
         label: 제목
         widget: string
 

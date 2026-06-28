@@ -5,7 +5,7 @@
             <a href="#kuma-exhibition">EXHIBITION</a>
             <a href="#kuma-resource">RESOURCE</a>
             <a href="#kuma-news">NEWS</a>
-            <button href="#" class="">EN</button>
+            <button id="lang-toggle" type="button">EN</button>
         </nav>
         <div>
             <a href="/" class="title">KUMA</a>
@@ -36,28 +36,73 @@
             <div>Exhibition</div>
 
             <div class="exhibition-list">
-                {{ range (where site.RegularPages "Section" "exhibitions") }}
-                <details class="exhibition-item">
-                    <summary>
-                        {{ .Params.type }} {{ .Title }}
-                        <span
-                            >{{ time.Format "2006.01.02" .Params.startDate }} –
-                            {{ time.Format "01.02" .Params.endDate }}</span
-                        >
-                    </summary>
+                <table class="exhibitions-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Title</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{ range (where site.RegularPages "Section"
+                        "exhibitions") }}
+                        <tr>
+                            <td>
+                                <span data-lang="ko"
+                                    >{{ .Params.ko.type }}</span
+                                >
+                                <span data-lang="en"
+                                    >{{ .Params.en.type }}</span
+                                >
+                            </td>
 
-                    <div class="content">
-                        {{ .Params.description | markdownify }} {{ with
-                        .Params.images }}
-                        <div class="gallery">
-                            {{ range . }}
-                            <img src="{{ . | relURL }}" alt="" />
-                            {{ end }}
-                        </div>
+                            <td>
+                                <details class="exhibition-item">
+                                    <summary>
+                                        <span data-lang="ko">
+                                            {{ .Params.ko.title }}
+                                        </span>
+                                        <span data-lang="en">
+                                            {{ .Params.en.title }}
+                                        </span>
+                                    </summary>
+
+                                    <div class="content">
+                                        <div data-lang="ko">
+                                            {{ .Params.ko.description |
+                                            markdownify }}
+                                        </div>
+
+                                        <div data-lang="en">
+                                            {{ .Params.en.description |
+                                            markdownify }}
+                                        </div>
+
+                                        {{ with .Params.ko.images }}
+                                        <div class="gallery">
+                                            {{ range . }}
+                                            <img
+                                                src="{{ . | relURL }}"
+                                                loading="lazy"
+                                                alt=""
+                                            />
+                                            {{ end }}
+                                        </div>
+                                        {{ end }}
+                                    </div>
+                                </details>
+                            </td>
+
+                            <td>
+                                {{ time.Format "2006.01.02" .Params.ko.startDate
+                                }} – {{ time.Format "01.02" .Params.ko.endDate
+                                }}
+                            </td>
+                        </tr>
                         {{ end }}
-                    </div>
-                </details>
-                {{ end }}
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="resource-container" id="kuma-resource">
@@ -114,3 +159,23 @@
         <!--<div>{{ .Content }}</div>-->
     </section>
 </div>
+<script>
+    function setLanguage(lang) {
+        document.querySelector(".left").dataset.language = lang;
+        localStorage.setItem("language", lang);
+
+        document.getElementById("lang-toggle").textContent =
+            lang === "ko" ? "EN" : "KO";
+    }
+
+    const button = document.getElementById("lang-toggle");
+
+    button.addEventListener("click", () => {
+        const current =
+            document.querySelector(".left").dataset.language || "ko";
+        const next = current === "ko" ? "en" : "ko";
+        setLanguage(next);
+    });
+
+    setLanguage(localStorage.getItem("language") || "ko");
+</script>

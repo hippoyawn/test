@@ -14,7 +14,7 @@
 :root {
     --header-offset: 74px;
 
-    --font-base: clamp(14px, 1.5vw, 17px);
+    --font-base: 13pt;
     --font-small: 9.5pt;
     --font-subsection: 11pt;
 
@@ -68,6 +68,7 @@ body {
 }
 
 body {
+    box-sizing: border-box;
     font-family: "Pretendard-Regular", sans-serif;
     font-size: var(--font-base);
     line-height: var(--line-base);
@@ -96,6 +97,30 @@ button {
     overflow-wrap: break-word;
 }
 
+th,
+td {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    text-align: left;
+    font-weight: normal;
+    vertical-align: top;
+}
+
+caption {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+thead,
+tbody,
+tfoot,
+tr {
+    margin: 0;
+    padding: 0;
+}
+
 p {
     margin: 0;
 }
@@ -111,10 +136,38 @@ ul {
     margin: 0;
 }
 
+details:hover {
+    cursor: pointer;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+details summary::marker {
+    content: "";
+}
+
 img {
     width: 100%;
     display: block;
     margin: 0;
+}
+
+.left[data-language="ko"] [data-lang="en"] {
+    display: none;
+}
+
+.left[data-language="en"] [data-lang="ko"] {
+    display: none;
+}
+
+.right[data-language="ko"] [data-lang="en"] {
+    display: none;
+}
+
+.right[data-language="en"] [data-lang="ko"] {
+    display: none;
 }
 
 .left,
@@ -145,7 +198,6 @@ main {
 .container {
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
 }
 
 .container.ex-kuma {
@@ -168,6 +220,14 @@ main {
 .container header nav {
     display: flex;
     flex-direction: column;
+}
+
+.container.kuma header {
+    background-color: white;
+}
+
+.container.ex-kuma header {
+    background-color: var(--exkuma-bg);
 }
 
 .container.ex-kuma header nav {
@@ -196,7 +256,7 @@ nav a:active {
 
 .container header .title {
     font-weight: 600;
-    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.333rem);
+    font-size: 16pt;
     line-height: 1;
 }
 
@@ -242,24 +302,24 @@ section > [class$="-container"]:last-child {
     width: fit-content;
 }
 
-.news-table {
+[class$="-table"] {
     width: 100%;
     border-collapse: collapse;
 }
 
-.news-table thead th {
+thead th {
     padding: 10px 12px;
     text-align: left;
     border-bottom: 1px solid #000;
 }
 
-.news-table tbody td {
+tbody td {
     padding: 16px 12px;
     vertical-align: top;
     border-bottom: 1px solid #000;
 }
 
-.news-table tbody td:first-child {
+tbody td:first-child {
     width: 90px;
     white-space: nowrap;
     border-right: 1px solid #000;
@@ -275,7 +335,7 @@ section > [class$="-container"]:last-child {
 
 .logos-container .logo {
     width: auto;
-    height: clamp(20px, 8vw, 60px);
+    height: 60px;
 }
 
 .news-table tbody td:last-child {
