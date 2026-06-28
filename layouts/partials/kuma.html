@@ -160,9 +160,10 @@
     </section>
 </div>
 <script>
-    const setLanguage = (lang, button, container) => {
+    const setLanguage = (lang, button, container, type) => {
         container.dataset.language = lang;
-        localStorage.setItem("kuma-language", lang);
+        console.log(type);
+        localStorage.setItem(`${type}-language`, lang);
 
         button.textContent = lang === "ko" ? "EN" : "KO";
     };
@@ -175,13 +176,14 @@
             const now = leftContainer.dataset.language || "ko";
             const next = now === "ko" ? "en" : "ko";
 
-            setLanguage(next, kumaLangButton, leftContainer);
+            setLanguage(next, kumaLangButton, leftContainer, "kuma");
         });
 
         setLanguage(
             localStorage.getItem("kuma-language") || "ko",
             kumaLangButton,
             leftContainer,
+            "kuma",
         );
     });
 </script>

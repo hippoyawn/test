@@ -41,7 +41,7 @@ collections:
     files:
       - name: kuma-about
         label: KUMA About
-        file: content/kuma-about/index.md
+        file: content/kuma-about.md
         i18n: true
         fields:
           - label: 사진
@@ -61,7 +61,7 @@ collections:
     files:
       - label: 운영위원회
         name: committee
-        file: content/committee.yml
+        file: content/committee.md
         fields:
           - label: 운영위원 목록
             name: items
@@ -77,7 +77,7 @@ collections:
     files:
       - label: 대표 소장품
         name: collections
-        file: content/collections.yml
+        file: content/collections.md
         fields:
           - label: 작품 목록
             name: items
@@ -189,9 +189,15 @@ collections:
     files:
       - name: exkuma-about
         label: EX-KUMA About
-        file: content/exkuma-about/index.md
+        file: content/exkuma-about.md
         i18n: true
         fields:
+          - label: 사진
+            name: image
+            widget: image
+            i18n: duplicate
+            required: true
+
           - label: 소개
             name: description
             widget: markdown
@@ -205,7 +211,7 @@ collections:
     files:
       - name: exkuma-unsettled
         label: EX-KUMA Unsettled
-        file: content/exkuma-unsettled/index.md
+        file: content/exkuma-unsettled.md
         i18n: true
         fields:
           - label: 소개

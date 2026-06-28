@@ -275,7 +275,7 @@ section > [class$="-container"]:last-child {
     padding-bottom: 0;
 }
 
-.container.kuma button {
+.container button {
     border: none;
     width: fit-content;
     background-color: white;
