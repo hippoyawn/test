@@ -5,7 +5,7 @@
             <a href="#kuma-exhibition">EXHIBITION</a>
             <a href="#kuma-resource">RESOURCE</a>
             <a href="#kuma-news">NEWS</a>
-            <button id="lang-toggle" type="button">EN</button>
+            <button class="lang-button kuma" type="button">EN</button>
         </nav>
         <div>
             <a href="/" class="title">KUMA</a>
@@ -14,22 +14,26 @@
 
     <section>
         <div class="about-container" id="kuma-about">
+            {{ $about := site.GetPage "/kuma-about" }}
+
             <div>
-                <img src="/assets/kuma01.jpg" />
+                <img src="{{ $about.Params.ko.image }}" alt="" />
             </div>
+
             <br />
+
             <div>About</div>
+
             <br />
+
             <div>
-                KUMA는 계원예술대학교의 부설 미술관으로, 예술과 디자인 교육의
-                실천적 현장이자 창의적 실험이 이루어지는 문화 플랫폼입니다. 본
-                미술관은 전시, 교육, 아카이브, 지역사회 연계 프로그램을 통해
-                동시대 시각문화에 대한 비판적 담론을 형성하고, 학생·연구자·현장
-                전문가 간의 교류를 촉진합니다. 또한 산업체와의 협업 전시, 학제
-                간 융합 프로젝트를 통해 미래 예술교육의 새로운 방향을 제시하고
-                있습니다. KUMA는 대학 내·외부의 다양한 구성원이 참여하는 열린
-                예술 생태계를 지향하며,예술이 일상과 사회를 연결하는 다리 역할을
-                수행합니다.
+                <span data-lang="ko">
+                    {{ $about.Params.ko.description | markdownify }}
+                </span>
+
+                <span data-lang="en">
+                    {{ $about.Params.en.description | markdownify }}
+                </span>
             </div>
         </div>
         <div class="exhibition-container" id="kuma-exhibition">
@@ -153,29 +157,31 @@
                 <img class="full" src="/assets/kuma02.jpg" />
             </div>
         </div>
-
-        <!-- <img class="full" src="img/exkuma03.jpg"> -->
-
-        <!--<div>{{ .Content }}</div>-->
     </section>
 </div>
 <script>
-    function setLanguage(lang) {
-        document.querySelector(".left").dataset.language = lang;
-        localStorage.setItem("language", lang);
+    const setLanguage = (lang, button, container) => {
+        container.dataset.language = lang;
+        localStorage.setItem("kuma-language", lang);
 
-        document.getElementById("lang-toggle").textContent =
-            lang === "ko" ? "EN" : "KO";
-    }
+        button.textContent = lang === "ko" ? "EN" : "KO";
+    };
 
-    const button = document.getElementById("lang-toggle");
+    document.addEventListener("DOMContentLoaded", () => {
+        const kumaLangButton = document.querySelector(".lang-button.kuma");
+        const leftContainer = document.querySelector(".left");
 
-    button.addEventListener("click", () => {
-        const current =
-            document.querySelector(".left").dataset.language || "ko";
-        const next = current === "ko" ? "en" : "ko";
-        setLanguage(next);
+        kumaLangButton.addEventListener("click", () => {
+            const now = leftContainer.dataset.language || "ko";
+            const next = now === "ko" ? "en" : "ko";
+
+            setLanguage(next, kumaLangButton, leftContainer);
+        });
+
+        setLanguage(
+            localStorage.getItem("kuma-language") || "ko",
+            kumaLangButton,
+            leftContainer,
+        );
     });
-
-    setLanguage(localStorage.getItem("language") || "ko");
 </script>

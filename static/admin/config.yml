@@ -33,14 +33,16 @@ media_libraries:
           optimize: true
 
 collections:
-  - name: pages
-    label: Pages
+  - divider: true
+
+  - name: kuma-about
+    label: KUMA About
     i18n: true
     files:
       - name: kuma-about
         label: KUMA About
-        i18n: true
         file: content/kuma-about/index.md
+        i18n: true
         fields:
           - label: 사진
             name: image
@@ -54,11 +56,33 @@ collections:
             i18n: true
             required: true
 
-          - label: 대표 소장품
-            name: collections
+  - label: KUMA 운영위원회
+    name: committee
+    files:
+      - label: 운영위원회
+        name: committee
+        file: content/committee.yml
+        fields:
+          - label: 운영위원 목록
+            name: items
+            widget: list
+            summary: "{{fields.role}} · {{fields.name}}"
+            fields:
+              - { label: 직책, name: role, widget: string }
+              - { label: 이름, name: name, widget: string }
+              - { label: 소속, name: affiliation, widget: string }
+
+  - label: KUMA 대표 소장품
+    name: collections
+    files:
+      - label: 대표 소장품
+        name: collections
+        file: content/collections.yml
+        fields:
+          - label: 작품 목록
+            name: items
             widget: list
             summary: "{{fields.artist}} · {{fields.title}}"
-            i18n: duplicate
             fields:
               - { label: 사진, name: image, widget: image }
               - { label: 분류, name: category, widget: string }
@@ -67,17 +91,7 @@ collections:
               - { label: 규격, name: size, widget: string }
               - { label: 제작연도, name: year, widget: number }
 
-          - label: 운영위원회
-            name: committee
-            widget: list
-            summary: "{{fields.role}} · {{fields.name}}"
-            i18n: duplicate
-            fields:
-              - { label: 직책, name: role, widget: string }
-              - { label: 이름, name: name, widget: string }
-              - { label: 소속, name: affiliation, widget: string }
-
-  - name: exhibition
+  - name: exhibitions
     label: KUMA Exhibitions
     folder: /content/exhibitions
     create: true
@@ -146,18 +160,67 @@ collections:
         widget: string
         hint: Google Drive 공유 링크 등
 
-  - name: news
+  - name: kuma-news
     label: KUMA News
-    folder: /content/news
+    folder: /content/kuma-news
     required: false
-    media_folder: "{{media_folder}}/resources/{{slug}}"
-    public_folder: "{{public_folder}}/resources/{{slug}}"
+    media_folder: "{{media_folder}}/kuma-news/{{slug}}"
+    public_folder: "{{public_folder}}/kuma-news/{{slug}}"
     fields:
       - name: type
         label: 형식
         widget: string
         hint: 보도자료 등
 
+      - name: title
+        label: 제목
+        widget: string
+
+      - name: link
+        label: 링크
+        widget: string
+        hint: https:// 로 시작하는 URL
+
+  - divider: true
+
+  - name: exkuma-about
+    label: EX-KUMA About
+    i18n: true
+    files:
+      - name: exkuma-about
+        label: EX-KUMA About
+        file: content/exkuma-about/index.md
+        i18n: true
+        fields:
+          - label: 소개
+            name: description
+            widget: markdown
+            i18n: true
+            required: true
+            hint: Unsettled 란?
+
+  - name: exkuma-unsettled
+    label: EX-KUMA Unsettled
+    i18n: true
+    files:
+      - name: exkuma-unsettled
+        label: EX-KUMA Unsettled
+        file: content/exkuma-unsettled/index.md
+        i18n: true
+        fields:
+          - label: 소개
+            name: description
+            widget: markdown
+            i18n: true
+            required: true
+
+  - name: exkuma-news
+    label: EX-KUMA News
+    folder: /content/exkuma-news
+    required: false
+    media_folder: "{{media_folder}}/exkuma-news/{{slug}}"
+    public_folder: "{{public_folder}}/exkuma-news/{{slug}}"
+    fields:
       - name: title
         label: 제목
         widget: string

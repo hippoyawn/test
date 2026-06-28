@@ -8,7 +8,7 @@
             <a href="#exkuma-unsettled">UNSETTLED</a>
             <a href="#exkuma-workshop">WORKSHOP</a>
             <a href="#exkuma-news">NEWS</a>
-            <button href="#" class="">EN</button>
+            <button href="#" class="lang-button ex-kuma">EN</button>
         </nav>
     </header>
 
@@ -102,6 +102,22 @@
     ];
 
     document.addEventListener("DOMContentLoaded", () => {
+        const exKumaLangButton = document.querySelector(".lang-button.ex-kuma");
+        const rightContainer = document.querySelector(".right");
+
+        exKumaLangButton.addEventListener("click", () => {
+            const now = rightContainer.dataset.language || "ko";
+            const next = now === "ko" ? "en" : "ko";
+
+            setLanguage(next, exKumaLangButton, rightContainer);
+        });
+
+        setLanguage(
+            localStorage.getItem("exkuma-language") || "ko",
+            exKumaLangButton,
+            rightContainer,
+        );
+
         const selected =
             colorThemes[Math.floor(Math.random() * colorThemes.length)];
 
