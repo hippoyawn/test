@@ -22,9 +22,7 @@
 
             <br />
 
-            <div>About</div>
-
-            <br />
+            <div class="section-title">About</div>
 
             <div>
                 <span data-lang="ko">
@@ -37,39 +35,37 @@
             </div>
         </div>
         <div class="exhibition-container" id="kuma-exhibition">
-            <div>Exhibition</div>
+            <div class="section-title">Exhibition</div>
 
             <div class="exhibition-list">
-                <table class="exhibitions-table">
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Title</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{ range (where site.RegularPages "Section"
-                        "exhibitions") }}
-                        <tr>
-                            <td>
+                <div class="exhibitions-head">
+                    <div class="type">Type</div>
+                    <div class="title">Exhibition</div>
+                    <div class="date">Date</div>
+                </div>
+
+                <div class="exhibitions-grid">
+                    {{ range where site.RegularPages "Section" "exhibitions" }}
+                    <div class="exhibitions-item-container">
+                        <div class="exhibitions-item">
+                            <div class="type">
                                 <span data-lang="ko"
                                     >{{ .Params.ko.type }}</span
                                 >
                                 <span data-lang="en"
                                     >{{ .Params.en.type }}</span
                                 >
-                            </td>
+                            </div>
 
-                            <td>
+                            <div class="title">
                                 <details class="exhibition-item">
                                     <summary>
-                                        <span data-lang="ko">
-                                            {{ .Params.ko.title }}
-                                        </span>
-                                        <span data-lang="en">
-                                            {{ .Params.en.title }}
-                                        </span>
+                                        <span data-lang="ko"
+                                            >{{ .Params.ko.title }}</span
+                                        >
+                                        <span data-lang="en"
+                                            >{{ .Params.en.title }}</span
+                                        >
                                     </summary>
 
                                     <div class="content">
@@ -96,57 +92,97 @@
                                         {{ end }}
                                     </div>
                                 </details>
-                            </td>
+                            </div>
 
-                            <td>
+                            <div class="date">
                                 {{ time.Format "2006.01.02" .Params.ko.startDate
                                 }} – {{ time.Format "01.02" .Params.ko.endDate
                                 }}
-                            </td>
-                        </tr>
-                        {{ end }}
-                    </tbody>
-                </table>
+                            </div>
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
             </div>
         </div>
-        <div class="resource-container" id="kuma-resource">
-            <div>Resource</div>
+        <div class="resources-container" id="kuma-resources">
+            <div class="section-title">Resources</div>
+
+            <div class="resources-list">
+                <div class="resources-head">
+                    <div class="type">Type</div>
+                    <div class="title">Title</div>
+                </div>
+
+                <div class="resources-grid">
+                    {{ with site.GetPage "/resources" }} {{ range .Params.items
+                    }}
+                    <div class="resources-item-container">
+                        <div class="resources-item">
+                            <div class="type">{{ .type }}</div>
+
+                            <div class="title">
+                                <a
+                                    href="{{ .link }}"
+                                    onclick="
+                                        let w = window.innerWidth * 0.5;
+                                        let h = window.innerHeight * 0.8;
+                                        window.open(
+                                            this.href,
+                                            'pdfwindow',
+                                            `width=${w},height=${h}`,
+                                        );
+                                        return false;
+                                    "
+                                >
+                                    {{ .title }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {{ end }} {{ end }}
+                </div>
+            </div>
         </div>
         <div class="news-container" id="kuma-news">
-            <div>News</div>
+            <div class="section-title">News</div>
 
-            <table class="news-table">
-                <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>Title</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{ range where site.RegularPages "Section" "news" }}
-                    <tr>
-                        <td>{{ .Params.type }}</td>
-                        <td>
-                            <a
-                                href="{{ .Params.link }}"
-                                onclick="
-                                    let w = window.innerWidth * 0.5;
-                                    let h = window.innerHeight * 0.8;
-                                    window.open(
-                                        this.href,
-                                        'pdfwindow',
-                                        `width=${w},height=${h}`,
-                                    );
-                                    return false;
-                                "
-                            >
-                                {{ .Params.item }}
-                            </a>
-                        </td>
-                    </tr>
-                    {{ end }}
-                </tbody>
-            </table>
+            <div class="news-list">
+                <div class="news-head">
+                    <div class="type">Type</div>
+                    <div class="title">Title</div>
+                </div>
+
+                <div class="news-grid">
+                    <div class="news-item-container">
+                        <div class="news-item">
+                            {{ range where site.RegularPages "Section" "news" }}
+
+                            <div class="type">{{ .Params.type }}</div>
+
+                            <div class="title">
+                                <a
+                                    href="{{ .Params.link }}"
+                                    onclick="
+                                        let w = window.innerWidth * 0.5;
+                                        let h = window.innerHeight * 0.8;
+                                        window.open(
+                                            this.href,
+                                            'pdfwindow',
+                                            `width=${w},height=${h}`,
+                                        );
+                                        return false;
+                                    "
+                                >
+                                    {{ .Params.item }}
+                                </a>
+                            </div>
+
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="contact-container">
             <div>↳ Contact</div>
@@ -162,7 +198,6 @@
 <script>
     const setLanguage = (lang, button, container, type) => {
         container.dataset.language = lang;
-        console.log(type);
         localStorage.setItem(`${type}-language`, lang);
 
         button.textContent = lang === "ko" ? "EN" : "KO";

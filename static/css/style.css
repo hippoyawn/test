@@ -302,27 +302,97 @@ section > [class$="-container"]:last-child {
     width: fit-content;
 }
 
-[class$="-table"] {
-    width: 100%;
-    border-collapse: collapse;
+.section-title {
+    margin-left: 0;
+    margin-bottom: var(--section-gap);
+    font-size: var(--font-base);
+    line-height: var(--line-tight);
+    color: var(--point-color);
 }
 
-thead th {
-    padding: 10px 12px;
-    text-align: left;
+.exhibitions-head,
+.news-head,
+.resources-head,
+.exhibitions-item,
+.news-item,
+.resources-item {
+    display: grid;
+}
+
+.exhibitions-head,
+.news-head,
+.resources-head {
+    font-weight: 600;
+    border-bottom: 1px solid var(--line-color);
+    color: black;
+    font-size: var(--font-small);
+    line-height: var(--line-tight);
+}
+
+.exhibitions-head > div,
+.news-head > div,
+.resources-head > div {
+    padding: 0 6px 8px;
+}
+
+.exhibitions-head,
+.exhibitions-item {
+    grid-template-columns: 86px minmax(0, 1fr) 82px;
+}
+
+.news-head,
+.news-item,
+.resources-head,
+.resources-item {
+    grid-template-columns: 86px minmax(0, 1fr);
+}
+
+.exhibitions-head,
+.news-head,
+.resources-head {
+    font-weight: 600;
+    border-bottom: 1px solid var(--line-color);
+    color: black;
+    font-size: var(--font-small);
+    line-height: var(--line-tight);
+}
+
+.exhibitions-item > *,
+.news-item > *,
+.resources-item > * {
+    min-height: var(--cell-min-height);
+    padding-top: 10px;
+    padding: var(--cell-padding);
+    border-left: 1px solid var(--line-color);
+    font-size: var(--font-base);
+    line-height: var(--line-base);
+    background: transparent;
+}
+
+.exhibitions-item > .title {
+    cursor: pointer;
+}
+
+.exhibitions-item-container,
+.news-item-container,
+.resources-item-container {
+    border-bottom: 1px solid var(--line-color);
+}
+
+.exhibitions-item,
+.news-item,
+.resources-item {
+    padding-top: 10px;
+}
+
+.exhibitions-grid .gallery {
+    display: flex;
+    flex-direction: row;
+}
+
+.header {
+    font-weight: 600;
     border-bottom: 1px solid #000;
-}
-
-tbody td {
-    padding: 16px 12px;
-    vertical-align: top;
-    border-bottom: 1px solid #000;
-}
-
-tbody td:first-child {
-    width: 90px;
-    white-space: nowrap;
-    border-right: 1px solid #000;
 }
 
 .logos-container {

@@ -138,27 +138,32 @@ collections:
         multiple: true
         required: false
 
-  - name: resources
-    label: KUMA Resources
-    folder: /content/resources
-    required: false
-    media_folder: "{{media_folder}}/resources/{{slug}}"
-    public_folder: "{{public_folder}}/resources/{{slug}}"
-    fields:
-      - name: type
-        label: 형식
-        widget: string
-        hint: PDF 등
+  - label: KUMA Resources
+    name: resources
+    files:
+      - label: Resources
+        name: resources
+        file: content/resources.md
+        fields:
+          - label: 자료 목록
+            name: items
+            widget: list
+            summary: "{{fields.type}} · {{fields.title}}"
+            fields:
+              - label: 형식
+                name: type
+                widget: string
+                hint: PDF 등
 
-      - name: title
-        label: 제목
-        widget: string
-        hint: 대관신청서 등
+              - label: 제목
+                name: title
+                widget: string
+                hint: 대관신청서 등
 
-      - name: link
-        label: 링크
-        widget: string
-        hint: Google Drive 공유 링크 등
+              - label: 링크
+                name: link
+                widget: string
+                hint: Google Drive 공유 링크 등
 
   - name: kuma-news
     label: KUMA News
