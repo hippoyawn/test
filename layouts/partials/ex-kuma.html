@@ -33,7 +33,26 @@
             </div>
         </div>
         <div class="unsettled-container" id="exkuma-unsettled">
-            <div></div>
+            {{ range where site.RegularPages "Section" "exkuma-news" }}
+            <div>News</div>
+            <div class="title">
+                <a
+                    href="{{ .Params.link }}"
+                    onclick="
+                        let w = window.innerWidth * 0.5;
+                        let h = window.innerHeight * 0.8;
+                        window.open(
+                            this.href,
+                            'pdfwindow',
+                            `width=${w},height=${h}`,
+                        );
+                        return false;
+                    "
+                >
+                    {{ .Params.title }}
+                </a>
+            </div>
+            {{ end }}
         </div>
         <div class="logos-container">
             <img class="logo" src="assets/ofm.png" alt="OFM" />

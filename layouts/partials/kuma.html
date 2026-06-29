@@ -80,14 +80,30 @@
                                         </div>
 
                                         {{ with .Params.ko.images }}
-                                        <div class="gallery">
-                                            {{ range . }}
-                                            <img
-                                                src="{{ . | relURL }}"
-                                                loading="lazy"
-                                                alt=""
-                                            />
-                                            {{ end }}
+                                        <div class="gallery-slider">
+                                            <button
+                                                class="prev-button"
+                                                type="button"
+                                            >
+                                                ‹
+                                            </button>
+
+                                            <div class="gallery-track">
+                                                {{ range . }}
+                                                <img
+                                                    src="{{ . | relURL }}"
+                                                    loading="lazy"
+                                                    alt=""
+                                                />
+                                                {{ end }}
+                                            </div>
+
+                                            <button
+                                                class="next-button"
+                                                type="button"
+                                            >
+                                                ›
+                                            </button>
                                         </div>
                                         {{ end }}
                                     </div>
@@ -220,5 +236,44 @@
             leftContainer,
             "kuma",
         );
+
+        document.querySelectorAll(".gallery-slider").forEach((slider) => {
+            const track = slider.querySelector(".gallery-track");
+            const images = [...track.querySelectorAll("img")];
+
+            if (images.length <= 1) {
+                slider.querySelector(".prev-button").classList.add("hidden");
+                slider.querySelector(".next-button").classList.add("hidden");
+                return;
+            }
+
+            let i = 0;
+
+            const prev = slider.querySelector(".prev-button");
+            const next = slider.querySelector(".next-button");
+
+            const update = () => {
+                track.style.transform = `translateX(-${i * 100}%)`;
+
+                prev.classList.toggle("hidden", i === 0);
+                next.classList.toggle("hidden", i === images.length - 1);
+            };
+
+            prev.addEventListener("click", () => {
+                if (i > 0) {
+                    i--;
+                    update();
+                }
+            });
+
+            next.addEventListener("click", () => {
+                if (i < images.length - 1) {
+                    i++;
+                    update();
+                }
+            });
+
+            update();
+        });
     });
 </script>

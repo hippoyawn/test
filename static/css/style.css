@@ -390,6 +390,47 @@ section > [class$="-container"]:last-child {
     flex-direction: row;
 }
 
+.gallery-slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-track {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+.gallery-track img {
+    width: 100%;
+    flex: 0 0 100%;
+    object-fit: contain;
+}
+
+.prev-button,
+.next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prev-button {
+    left: 8px;
+}
+
+.next-button {
+    right: 8px;
+}
+
+.prev-button.hidden,
+.next-button.hidden {
+    display: none;
+}
+
 .header {
     font-weight: 600;
     border-bottom: 1px solid #000;
@@ -408,7 +449,18 @@ section > [class$="-container"]:last-child {
     height: 60px;
 }
 
-.news-table tbody td:last-child {
+.unsettled-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.unsettled-container > div:first-child {
+    display: inline-block;
+    padding: 1px 10px;
+    font-size: var(--font-small);
+    border-radius: 999px;
+    border: 1px solid var(--line-color);
 }
 
 @media screen and (max-width: 1280px) {
