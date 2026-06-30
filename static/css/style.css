@@ -393,6 +393,7 @@ section > [class$="-container"]:last-child {
 .gallery-slider {
     position: relative;
     overflow: hidden;
+    border: 1px solid black;
 }
 
 .gallery-track {
@@ -411,11 +412,15 @@ section > [class$="-container"]:last-child {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 32px;
-    height: 32px;
-    border: 0;
     cursor: pointer;
     z-index: 10;
+    padding: 4px 8px;
+    font-size: var(--font-base);
+    line-height: 1;
+    background: white;
+    border: 1px solid var(--line-color);
+    padding: 5px 13px;
+    user-select: none;
 }
 
 .prev-button {
