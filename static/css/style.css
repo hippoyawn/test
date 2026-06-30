@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 @font-face {
@@ -154,19 +155,19 @@ img {
     margin: 0;
 }
 
-.left[data-language="ko"] [data-lang="en"] {
+.container.kuma[data-language="ko"] [data-lang="en"] {
     display: none;
 }
 
-.left[data-language="en"] [data-lang="ko"] {
+.container.kuma[data-language="en"] [data-lang="ko"] {
     display: none;
 }
 
-.right[data-language="ko"] [data-lang="en"] {
+.container.ex-kuma[data-language="ko"] [data-lang="en"] {
     display: none;
 }
 
-.right[data-language="en"] [data-lang="ko"] {
+.container.ex-kuma[data-language="en"] [data-lang="ko"] {
     display: none;
 }
 

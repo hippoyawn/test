@@ -28,4 +28,15 @@
     {{ with .OutputFormats.Get "rss" -}} {{ printf `
     <link rel="%s" type="%s" href="%s" title="%s" />
     ` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }} {{ end -}}
+    <script defer src="/script/global.js"></script>
+    {{ if .IsHome }}
+    <script defer src="/script/kuma.js"></script>
+    <script defer src="/script/ex-kuma.js"></script>
+
+    {{ else if eq .Layout "kuma" }}
+    <script defer src="/script/kuma.js"></script>
+
+    {{ else if eq .Layout "ex-kuma" }}
+    <script defer src="/script/ex-kuma.js"></script>
+    {{ end }}
 </head>
