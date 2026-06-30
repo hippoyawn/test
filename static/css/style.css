@@ -315,7 +315,9 @@ section > [class$="-container"]:last-child {
 .resources-head,
 .exhibitions-item,
 .news-item,
-.resources-item {
+.resources-item,
+.collections-item,
+.committee-item {
     display: grid;
 }
 
@@ -337,7 +339,15 @@ section > [class$="-container"]:last-child {
 
 .exhibitions-head,
 .exhibitions-item {
-    grid-template-columns: 86px minmax(0, 1fr) 82px;
+    grid-template-columns: 85px auto 180px;
+}
+
+.collections-item {
+    grid-template-columns: 95px auto 70px;
+}
+
+.committee-item {
+    grid-template-columns: 95px auto 300px;
 }
 
 .news-head,
@@ -359,7 +369,9 @@ section > [class$="-container"]:last-child {
 
 .exhibitions-item > *,
 .news-item > *,
-.resources-item > * {
+.resources-item > *,
+.collections-item > *,
+.committee-item > * {
     min-height: var(--cell-min-height);
     padding-top: 10px;
     padding: var(--cell-padding);
@@ -375,13 +387,17 @@ section > [class$="-container"]:last-child {
 
 .exhibitions-item-container,
 .news-item-container,
-.resources-item-container {
+.resources-item-container,
+.collections-item-container,
+.committee-item-container {
     border-bottom: 1px solid var(--line-color);
 }
 
 .exhibitions-item,
 .news-item,
-.resources-item {
+.resources-item,
+.collections-item,
+.committee-item {
     padding-top: 10px;
 }
 

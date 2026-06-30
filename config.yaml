@@ -25,19 +25,14 @@ markup:
     lineNumbersInTable: false
     tabWidth: 4
 
-# menu:
-#   main:
-#     - identifier: about
-#       name: about
-#       url: /about.html
-#       weight: 1
+menu:
+  main:
+    - identifier: kuma
+      name: kuma
+      url: /kuma.html
+      weight: 1
 
-#     - identifier: contact
-#       name: contact
-#       url: /contact.html
-#       weight: 2
-
-#     - identifier: works
-#       name: works
-#       url: /works
-#       weight: 3
+    - identifier: ex-kuma
+      name: ex-kuma
+      url: /ex-kuma.html
+      weight: 2
