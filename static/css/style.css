@@ -278,9 +278,26 @@ section > [class$="-container"]:last-child {
 
 .container button {
     border: none;
-    width: fit-content;
     background-color: white;
     cursor: pointer;
+}
+
+.lang-button {
+    position: absolute;
+    top: 150px;
+    width: 43px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lang-button.kuma {
+    left: 10px;
+}
+
+.lang-button.ex-kuma {
+    right: 10px;
 }
 
 .container.kuma button:hover {
@@ -300,7 +317,6 @@ section > [class$="-container"]:last-child {
     background-color: var(--exkuma-bg);
     color: var(--exkuma-text);
     border: none;
-    width: fit-content;
 }
 
 .section-title {
@@ -308,6 +324,20 @@ section > [class$="-container"]:last-child {
     margin-bottom: var(--section-gap);
     font-size: var(--font-base);
     line-height: var(--line-tight);
+    color: var(--point-color);
+}
+
+.subtitle {
+    margin-bottom: 6px;
+    padding-bottom: 0;
+    border-bottom: 0;
+    font-size: var(--font-subsection);
+    line-height: var(--line-tight);
+    color: black;
+}
+
+.subtitle:before {
+    content: "↳ ";
     color: var(--point-color);
 }
 
@@ -340,7 +370,7 @@ section > [class$="-container"]:last-child {
 
 .exhibitions-head,
 .exhibitions-item {
-    grid-template-columns: 85px auto 180px;
+    grid-template-columns: 120px auto 180px;
 }
 
 .collections-item {
