@@ -335,6 +335,7 @@ section > [class$="-container"]:last-child {
     font-size: var(--font-subsection);
     line-height: var(--line-tight);
     color: black;
+    font-weight: 200;
 }
 
 .subtitle:before {
@@ -356,7 +357,6 @@ section > [class$="-container"]:last-child {
 .exhibitions-head,
 .news-head,
 .resources-head {
-    font-weight: 600;
     border-bottom: 1px solid var(--line-color);
     color: black;
     font-size: var(--font-small);
@@ -379,7 +379,7 @@ section > [class$="-container"]:last-child {
 }
 
 .committee-item {
-    grid-template-columns: 95px auto 300px;
+    grid-template-columns: 95px auto 250px;
 }
 
 .news-head,
@@ -392,7 +392,6 @@ section > [class$="-container"]:last-child {
 .exhibitions-head,
 .news-head,
 .resources-head {
-    font-weight: 600;
     border-bottom: 1px solid var(--line-color);
     color: black;
     font-size: var(--font-small);
@@ -433,6 +432,27 @@ section > [class$="-container"]:last-child {
     padding-top: 10px;
 }
 
+.collections-item .title {
+    position: relative;
+    overflow: visible;
+    cursor: default;
+}
+
+.collections-image {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 60%;
+    width: 150px !important;
+    height: auto;
+    background: white;
+    z-index: 1000;
+}
+
+.collections-item .title:hover .collections-image {
+    display: block;
+}
+
 .mark-container {
     display: flex;
     gap: 12px;
@@ -443,13 +463,13 @@ section > [class$="-container"]:last-child {
     line-height: var(--line-tight);
 }
 
-.mark-container > span {
+.mark {
     display: inline-flex;
     align-items: center;
     gap: 4px;
 }
 
-.mark-container span i {
+.mark i {
     display: inline-block;
     width: 12px;
     height: 12px;

@@ -45,6 +45,11 @@
 
                             <div class="title">
                                 {{ .artist }}, &lt;{{ .title }}&gt;, {{ .size }}
+                                <img
+                                    class="collections-image"
+                                    loading="lazy"
+                                    src="{{ .image }}"
+                                />
                             </div>
 
                             <div class="date">{{ .year }}</div>
@@ -75,8 +80,8 @@
         <div class="exhibition-container" id="kuma-exhibition">
             <div class="section-title">Exhibition</div>
             <div class="mark-container">
-                <span><i class="current"></i>Current</span>
-                <span><i class="upcoming"></i>Upcoming</span>
+                <span class="mark"><i class="current"></i>Current</span>
+                <span class="mark"><i class="upcoming"></i>Upcoming</span>
             </div>
             <div class="exhibition-list">
                 <div class="exhibitions-head">
@@ -86,7 +91,8 @@
                 </div>
 
                 <div class="exhibitions-grid">
-                    {{ range where site.RegularPages "Section" "exhibitions" }}
+                    {{ range sort (where site.RegularPages "Section"
+                    "exhibitions") ".Params.ko.startDate" "desc" }}
                     <div class="exhibitions-item-container">
                         <div class="exhibitions-item">
                             <div class="type">
@@ -101,6 +107,19 @@
                             <div class="title">
                                 <details class="exhibition-item">
                                     <summary>
+                                        {{ $now := now }} {{ $start := time
+                                        .Params.ko.startDate }} {{ $end := time
+                                        .Params.ko.endDate }} {{ if lt $now
+                                        $start }}
+                                        <span class="mark"
+                                            ><i class="upcoming"></i
+                                        ></span>
+                                        {{ else if and (ge $now $start) (le $now
+                                        $end) }}
+                                        <span class="mark"
+                                            ><i class="current"></i
+                                        ></span>
+                                        {{ end }}
                                         <span data-lang="ko"
                                             >{{ .Params.ko.title }}</span
                                         >
