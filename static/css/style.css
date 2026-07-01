@@ -122,10 +122,6 @@ tr {
     padding: 0;
 }
 
-p {
-    margin: 0;
-}
-
 a {
     color: black;
     text-decoration: none;
@@ -153,6 +149,11 @@ img {
     width: 100%;
     display: block;
     margin: 0;
+}
+
+div[data-lang="en"] > p,
+div[data-lang="ko"] > p {
+    margin-bottom: 1rem;
 }
 
 .container.kuma[data-language="ko"] [data-lang="en"] {
@@ -432,6 +433,38 @@ section > [class$="-container"]:last-child {
     padding-top: 10px;
 }
 
+.mark-container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: var(--section-gap);
+    font-size: var(--font-small);
+    line-height: var(--line-tight);
+}
+
+.mark-container > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.mark-container span i {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 1px solid var(--line-color);
+    flex: 0 0 auto;
+}
+
+.upcoming {
+    background: white;
+}
+
+.current {
+    background: black;
+}
+
 .exhibitions-grid .gallery {
     display: flex;
     flex-direction: row;
@@ -441,6 +474,7 @@ section > [class$="-container"]:last-child {
     position: relative;
     overflow: hidden;
     border: 1px solid black;
+    margin: 4px 0 18px;
 }
 
 .gallery-track {
@@ -507,12 +541,21 @@ section > [class$="-container"]:last-child {
     gap: 10px;
 }
 
-.unsettled-container > div:first-child {
+.unsettled-container ul li {
+    display: flex;
+    gap: 10px;
+}
+
+.unsettled-container ul li span:first-child {
     display: inline-block;
-    padding: 1px 10px;
     font-size: var(--font-small);
     border-radius: 999px;
+    padding: 1px 10px;
     border: 1px solid var(--line-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 @media screen and (max-width: 1280px) {

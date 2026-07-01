@@ -74,7 +74,10 @@
         </div>
         <div class="exhibition-container" id="kuma-exhibition">
             <div class="section-title">Exhibition</div>
-
+            <div class="mark-container">
+                <span><i class="current"></i>Current</span>
+                <span><i class="upcoming"></i>Upcoming</span>
+            </div>
             <div class="exhibition-list">
                 <div class="exhibitions-head">
                     <div class="type">Type</div>
@@ -107,16 +110,6 @@
                                     </summary>
 
                                     <div class="content">
-                                        <div data-lang="ko">
-                                            {{ .Params.ko.description |
-                                            markdownify }}
-                                        </div>
-
-                                        <div data-lang="en">
-                                            {{ .Params.en.description |
-                                            markdownify }}
-                                        </div>
-
                                         {{ with .Params.ko.images }}
                                         <div class="gallery-slider">
                                             <button
@@ -144,6 +137,15 @@
                                             </button>
                                         </div>
                                         {{ end }}
+                                        <div data-lang="ko">
+                                            {{ .Params.ko.description |
+                                            markdownify }}
+                                        </div>
+
+                                        <div data-lang="en">
+                                            {{ .Params.en.description |
+                                            markdownify }}
+                                        </div>
                                     </div>
                                 </details>
                             </div>
